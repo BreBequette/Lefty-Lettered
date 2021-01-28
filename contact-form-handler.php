@@ -1,35 +1,124 @@
-<?php
-If(isset($_POST['submit'])) {
+<?php 
 
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
-		$name = $_POST['name'];
-		$visitor_email = $_POST['email'];
-		$visitor_phone = $_POST['phone'];
-		$message = $_POST['message'];
 
-		$email_from = 'bmbequette@gmail.com';
-		$email_subject = "New Form Submission";
-		$email_body = "Name: $name\nEmail: $visitor_email\nPhone: $visitor_phone\nMessage: $message\n";
 
-		$to = "bmbequette@gmail.com";
-		$headers = "From: $email_from \r\n";
-		$headers = "Reply-To: $visitor_email \r\n";
-		mail($to,$email_subject,$email_body,$headers);
-		//header("Location: contact.html");
+// define variables and set to empty values
 
-        if($name && $visitor_email && $visitor_phone && $message) {
+$name_error = $email_error = $phone_error = "";
 
-            header('location: thanks.html');
+$name = $email = $phone = $message = $success = "";
 
-           //or below types
 
-           echo '<meta http-equiv="refresh" content="0;url=http://www.google.com/" />';
 
-        }
+//form is submitted with POST method
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  if (empty($_POST["name"])) {
+
+    $name_error = "Name is required";
+
+  } else {
+
+    $name = test_input($_POST["name"]);
+
+    // check if name only contains letters and whitespace
+
+    if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+
+      $name_error = "Only letters and white space allowed"; 
 
     }
 
-}
-	
-?>
+  }
 
+
+
+  if (empty($_POST["email"])) {
+
+    $email_error = "Email is required";
+
+  } else {
+
+    $email = test_input($_POST["email"]);
+
+    // check if e-mail address is well-formed
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+      $email_error = "Invalid email format"; 
+
+    }
+
+  }
+
+  
+
+  if (empty($_POST["phone"])) {
+
+    $phone_error = "Phone is required";
+
+  } else {
+
+    $phone = test_input($_POST["phone"]);
+
+    // check if e-mail address is well-formed
+
+    if (!preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i",$phone)) {
+
+      $phone_error = "Invalid phone number"; 
+
+    }
+
+  }
+
+
+  if (empty($_POST["message"])) {
+
+    $message = "";
+
+  } else {
+
+    $message = test_input($_POST["message"]);
+
+  }
+
+  
+	//send the email
+  if ($name_error == '' and $email_error == '' and $phone_error == '' ){
+
+      $message_body = '';
+
+      unset($_POST['submit']);
+
+      $to = 'bmbequette@gmail.com';
+
+      $subject = 'Lefty Lettered Contact Form Submit';
+	  
+	  $message_body .= "From: ".$name."\r\n";
+	  $message_body .= "Email: ".$email."\r\n";
+	  $message_body .= "Phone: ".$phone."\r\n";
+	  $message_body .= "Message: ".$message."\r\n";
+
+      if (mail($to, $subject, $message)){
+
+          $success = "Thanks for your message! I'll be in touch soon.";
+
+          $name = $email = $phone = $message = '';
+
+      }
+
+  }
+
+  
+
+}//end POST
+
+
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}

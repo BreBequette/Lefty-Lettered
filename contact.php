@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-
+<?php include('contact-form-handler.php'); ?>
 <body>
     <div class="container">
     
@@ -50,27 +50,30 @@
         
     </div>
 
-    <form class="contact" method="post" action="contact-form-handler.php" role="form">
+    <form class="contact" method="post" action="<?= $_SERVER['PHP_SELF'] ?>" role="form">
         <fieldset>
    
          <div class="formRow">
            <label for="name">Name*</label>
-           <input name="name" id="name" type="text" placeholder="first and last name" required />
+           <input name="name" id="name" type="text" value="<?= $name ?>" placeholder="first and last name" />
+			<span class="error"><?= $name_error ?></span>
          </div>
    
          <div class="formRow">
            <label for="email">E-mail Address*</label>
-           <input name="email" id="email" type="email" placeholder="email address" required />
+           <input name="email" id="email" type="text" value="<?= $email ?>" placeholder="email address" />
+			 <span class="error"><?= $email_error ?></span>
          </div>
    
          <div class="formRow">
            <label for="phone">Phone Number*</label>
-           <input name="phone" id="restaurant" type="tel" placeholder="phone number" required />
+           <input name="phone" id="phone" type="text" value="<?= $phone ?>" placeholder="phone number" />
+			 <span class="error"><?= $phone_error ?></span>
          </div>
    
          <div class="formRow">
            <label for="message">What do you have in mind?</label>
-           <textarea name="message" id="message"></textarea>
+           <textarea name="message" id="message" type="text" value="<?= $message ?>"> </textarea>
          </div>
    
        </fieldset>
@@ -78,6 +81,7 @@
        <div id="button">
          <input type="submit" value="Send Message"/>
        </div>
+		<div class="success"><?= $success; ?></div>
    
      </form>
 
