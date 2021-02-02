@@ -52,6 +52,10 @@
 
     <form class="contact" method="post" action="<?= $_SERVER['PHP_SELF'] ?>" role="form">
         <fieldset>
+			
+	  <span class="error"><?= $name_error ?></span>
+      <span class="error"><?= $email_error ?></span>
+      <span class="error"><?= $phone_error ?></span>
    
          <div class="formRow">
            <label for="name">Name*</label>
@@ -73,9 +77,6 @@
            <textarea name="message" id="message" type="text" value="<?= $message ?>"> </textarea>
          </div>
 			
-	<span class="error"><?= $name_error ?></span>
-      <span class="error"><?= $email_error ?></span>
-      <span class="error"><?= $phone_error ?></span>
    
        </fieldset>
    
