@@ -100,9 +100,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	  $message_body .= "Phone: ".$phone."\r\n";
 	  $message_body .= "Message: ".$message."\r\n";
 
-      if (mail($to, $subject, $message)){
+      if (mail($to, $subject, $message_body)){
 
-          $success = "Thanks for your message! I'll be in touch soon.";
+		  ?>
+			<script type="text/javascript">
+				window.location = "https://www.leftylettered.com/thanks.html";
+			</script>      
+    	<?php
 
           $name = $email = $phone = $message = '';
 

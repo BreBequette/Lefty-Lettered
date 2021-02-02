@@ -56,32 +56,33 @@
          <div class="formRow">
            <label for="name">Name*</label>
            <input name="name" id="name" type="text" value="<?= $name ?>" placeholder="first and last name" />
-			<span class="error"><?= $name_error ?></span>
          </div>
    
          <div class="formRow">
            <label for="email">E-mail Address*</label>
            <input name="email" id="email" type="text" value="<?= $email ?>" placeholder="email address" />
-			 <span class="error"><?= $email_error ?></span>
          </div>
    
          <div class="formRow">
            <label for="phone">Phone Number*</label>
            <input name="phone" id="phone" type="text" value="<?= $phone ?>" placeholder="phone number" />
-			 <span class="error"><?= $phone_error ?></span>
          </div>
    
          <div class="formRow">
            <label for="message">What do you have in mind?</label>
            <textarea name="message" id="message" type="text" value="<?= $message ?>"> </textarea>
          </div>
+			
+	<span class="error"><?= $name_error ?></span>
+      <span class="error"><?= $email_error ?></span>
+      <span class="error"><?= $phone_error ?></span>
    
        </fieldset>
    
        <div id="button">
          <input type="submit" value="Send Message"/>
        </div>
-		<div class="success"><?= $success; ?></div>
+	
    
      </form>
 

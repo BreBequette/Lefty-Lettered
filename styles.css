@@ -43,9 +43,7 @@ p {
     color: #293546;
 }
 
-.error {
-	color:#95556b;
-}
+
 
 body {
     margin: 0px;
@@ -499,7 +497,7 @@ button:hover {
 form {
     margin-left: auto;
     margin-right: auto;
-    width: 70vw;
+    width: 60vw;
     display: inline-block;
 }
 
@@ -524,6 +522,7 @@ form {
     -webkit-flex: 1 1 150px;
     flex: 1 1 150px;
   }
+  
 
   .formRow label {
     color: #293546;
@@ -533,7 +532,7 @@ form {
     letter-spacing: .025em;
 }
 
-.formRow input {
+.formRow input, textarea {
     background-color: #FFFBF9;
     color:#293546;
     border-radius: 0px;
@@ -541,7 +540,6 @@ form {
     padding: 3px;
     font-family: 'Open Sans', sans-serif;
     font-size: .8em;
-    text-transform: uppercase;
     letter-spacing: .025em;
 }
 
@@ -555,21 +553,6 @@ form {
     border-radius: 0px;
     border: 1px solid #95556b;
 }
-
-textarea {
-    background-color: #FFFBF9;
-    color:#293546;
-    border-radius: 0px;
-    border: 1px solid #95556b;
-    padding: 3px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: .8em;
-    text-transform: uppercase;
-    letter-spacing: .025em;
-    margin-top: 10px;
-    height: 100px;
-    
-  }
 
   #button {
     text-align: center;
@@ -597,11 +580,20 @@ textarea {
     cursor: pointer;
   }
 
-.success {
-	color: #95556b;
-	text-align: center;
-	font-size: 2em;
+  .error {
+    display: block;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: .9em;
+    letter-spacing: .025em;
+	color:#95556b;
 }
+
+  /*THANK YOU PAGE STYLES*/
+#thanks-buttons {
+	padding-bottom: 50px;
+}
+
   
   /* MOBILE STYLES - phones */
   @media only screen and (max-width: 480px) {
@@ -809,7 +801,7 @@ textarea {
     form {
         width: 100vw;
     }
-    fieldset, textarea {
+    fieldset {
         width: 90vw;
     }
     
@@ -924,11 +916,10 @@ textarea {
     fieldset {
         width: 90vw;
     }
-    input, textarea {
+    input {
         width: 90vw;
     }
     form {
         width: 100vw;
     }
 }
-
